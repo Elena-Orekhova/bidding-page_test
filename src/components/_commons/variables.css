@@ -1,0 +1,13 @@
+:root {
+  --bg-color-main: #F5F7F7;
+  --bg-color-red: #f3b0b0;
+  --bg-color-grey: #d9dede;
+
+  --text-color-main: #0f0f0f;
+  --text-color-blue: #2094ce;
+  --text-color-red: #f60404;
+
+  --text-color-price-red: #a80808;
+  --text-color-price-green: #06732c;
+  --text-color-price-blue: #03278a;
+}

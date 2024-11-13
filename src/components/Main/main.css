@@ -1,0 +1,9 @@
+.main {
+  display: flex;
+  flex-direction: column;
+}
+
+.main__main-text_text-warning {
+  color: var(--text-color-red);
+  background: var(--bg-color-red);
+}
