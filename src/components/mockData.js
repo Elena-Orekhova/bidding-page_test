@@ -12,7 +12,6 @@ export const mockData = [
   {
     "id": 1,
     "name": "ООО 'ТехноСтрой'",
-    "url": "11",
     "complexActivities": "да",
     "productionTimeDays": 30,
     "warrantyMonths": 24,
@@ -22,7 +21,6 @@ export const mockData = [
   {
     "id": 2,
     "name": "ЗАО 'СтройКомплект'",
-    "url": 22,
     "complexActivities": "нет",
     "productionTimeDays": 45,
     "warrantyMonths": 18,
@@ -32,7 +30,6 @@ export const mockData = [
   {
     "id": 3,
     "name": "ИП 'МастерПром'",
-    "url": 33,
     "complexActivities": "да",
     "productionTimeDays": 60,
     "warrantyMonths": 36,
@@ -42,7 +39,6 @@ export const mockData = [
   {
     "id": 4,
     "name": "ООО 'СтройТехСервис'",
-    "url": 44,
     "complexActivities": "нет",
     "productionTimeDays": 35,
     "warrantyMonths": 12,
@@ -52,7 +48,6 @@ export const mockData = [
   {
     "id": 5,
     "name": "АО 'ПроектСнаб'",
-    "url": 55,
     "complexActivities": "да",
     "productionTimeDays": 50,
     "warrantyMonths": 24,

@@ -56,14 +56,51 @@ const Main = () => {
   }, [moveTime, isAuctionOver]);
 
   return (
-    <main className="main">
-      <p className="main__main-text_text-warning">
-        Уважаемые участники, во время своего хода вы не можете изменить параметры товаров, указанных в таблице:
+    <main className="auction">
+      {organizer && (
+        <>
+          {!isOpenAuction ? (
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpenAuction(true);
+                updateLocalStorage("isOpenAuction", true);
+                setIsAuctionOver(false);
+                updateLocalStorage("isAuctionOver", false);
+              }}
+            >
+              Начать торги
+            </button>
+          ) : (
+            <button
+              type="button"
+              onClick={() => {
+                setIsOpenAuction(false);
+                updateLocalStorage("isOpenAuction", false);
+                setIsAuctionOver(true);
+                updateLocalStorage("isAuctionOver", true);
+              }}
+            >
+              Остановить торги
+            </button>
+          )}
+        </>
+      )}
+      <p className="auction__warning">
+        Уважаемые участники, во время своего хода вы не можете изменить
+        параметры товаров, указанных в таблице:
       </p>
-      <Move onMove={moveToNextPlayer} currentPlayer={mockData[currentPlayerIndex]} />
-      <Price onPrice={applyDiscount} />
+      {currentPlayerId === +playerId && !isAuctionOver && (
+        <>
+          <Move
+            onMove={moveToNextPlayer}
+            currentPlayer={mockData[currentPlayerId]}
+          />
+          <Price onPrice={applyDiscount} />
+        </>
+      )}
       <Timer auctionTime={auctionTime} moveTime={moveTime} />
-      <Table discount={discount} activePlayerIndex={currentPlayerIndex} />
+      <Table discount={discount} activePlayerId={currentPlayerId} />
     </main>
   );
 };

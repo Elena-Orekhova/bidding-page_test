@@ -3,27 +3,33 @@ import { useNavigate } from "react-router-dom";
 
 const OrganizerLogin = () => {
   const [password, setPassword] = useState("");
-  const history = useNavigate();
+  const navigate = useNavigate();
 
-  // Ваша логика для проверки пароля организатора
+  // Логика проверки пароля организатора
   const handleLogin = () => {
     if (password === "organizer123") { // Пример пароля
-      history.push("/organizer-dashboard");
+      navigate("/organizer-dashboard");
     } else {
       alert("Неверный пароль");
     }
   };
 
   return (
-    <div>
-      <h2>Вход для Организатора</h2>
+    <div className="organizer-login">
+      <h2 className="organizer-login__title">Вход для Организатора</h2>
       <input 
+        className="organizer-login__input"
         type="password" 
         value={password} 
         onChange={(e) => setPassword(e.target.value)} 
         placeholder="Введите пароль" 
       />
-      <button onClick={handleLogin}>Войти</button>
+      <button 
+        className="organizer-login__button" 
+        onClick={handleLogin}
+      >
+        Войти
+      </button>
     </div>
   );
 };

@@ -1,4 +1,5 @@
 import React from "react";
+import "./timer.css";
 
 const Timer = ({ auctionTime, moveTime }) => {
   const formatTime = (timeInSeconds) => {
@@ -8,12 +9,14 @@ const Timer = ({ auctionTime, moveTime }) => {
   };
 
   return (
-    <div className="main__timer">
-      <div className="main__timer_timer-auction">
-        Время до закрытия торгов: {formatTime(auctionTime)}
+    <div className="timer">
+      <div className="timer__auction">
+        <span className="timer__label">Время до закрытия торгов:</span>
+        <span className="timer__value">{formatTime(auctionTime)}</span>
       </div>
-      <div className="main__timer_timer-move">
-        Оставшееся время хода: {formatTime(moveTime)}
+      <div className="timer__move">
+        <span className="timer__label">Оставшееся время хода:</span>
+        <span className="timer__value">{formatTime(moveTime)}</span>
       </div>
     </div>
   );

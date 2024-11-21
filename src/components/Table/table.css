@@ -1,40 +1,34 @@
-.main__main-table{
+.table {
   width: 100%;
-  border-collapse: collapse;
-  border: none;
-  padding: 0;
   text-align: center;
+  border-collapse: collapse;
 }
 
-.main__main-table_table-head {
+.table__head {
   color: var(--text-color-blue);
-  
 }
 
-.main__main-table_table-row {
-  border: none;
+.table__header-row {
+  background-color: var(--bg-color-light-grey);
 }
 
-.main__main-table_table-row-head {
-  
+.table__row:nth-child(odd) {
+  background-color: var(--bg-color-grey);
 }
 
-th, td {
-  width: 100%;
+.table__cell {
   padding: 1% 0;
 }
 
-.main__main-table_table-row:nth-child(odd) {
-  background-color: var(--bg-color-grey);
+.table__cell--highlight {
+  color: red;
 }
 
-.main__main-table_table-data {
-  background-color: var(--bg-color-grey);
+.table__discount {
+  color: var(--text-color-green);
+  background-color: var(--bg-color-light-grey);
 }
 
-.main__main-table_table-data {
-  border: none;
-  padding: 0;
-  /* text-align: center; */
+.table__price {
+  font-weight: bold;
 }
-

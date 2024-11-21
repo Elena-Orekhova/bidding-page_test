@@ -14,13 +14,23 @@ const OrganizerDashboard = () => {
   };
 
   return (
-    <div>
-      <h2>Панель Организатора</h2>
-      <p>{isTradingActive ? "Торги активны" : "Торги завершены"}</p>
-      <button onClick={startTrading} disabled={isTradingActive}>
+    <div className="organizer-dashboard">
+      <h2 className="organizer-dashboard__title">Панель Организатора</h2>
+      <p className="organizer-dashboard__status">
+        {isTradingActive ? "Торги активны" : "Торги завершены"}
+      </p>
+      <button
+        className="organizer-dashboard__button organizer-dashboard__button--start"
+        onClick={startTrading}
+        disabled={isTradingActive}
+      >
         Начать торги
       </button>
-      <button onClick={endTrading} disabled={!isTradingActive}>
+      <button
+        className="organizer-dashboard__button organizer-dashboard__button--end"
+        onClick={endTrading}
+        disabled={!isTradingActive}
+      >
         Завершить торги
       </button>
     </div>

@@ -2,9 +2,9 @@ import React from "react";
 
 const Move = ({ onMove, currentPlayer }) => {
   return (
-    <div>
-      <p>{currentPlayer.name}, ваш ход!</p>
-      <button className="main__button_button-move" onClick={onMove}>
+    <div className="move">
+      <p className="move__message">{currentPlayer.name}, ваш ход!</p>
+      <button className="move__button" onClick={onMove}>
         Передать ход
       </button>
     </div>

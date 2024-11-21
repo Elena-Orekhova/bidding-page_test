@@ -5,70 +5,102 @@ import "./table.css";
 // Функция для генерации строк таблицы
 const generateTableRows = (dataKey) => {
   return mockData.map((participant) => {
-    return <td key={participant.id}>{participant[dataKey]}</td>;
+    return (
+      <td key={participant.id} className="table__cell">
+        {participant[dataKey]}
+      </td>
+    );
   });
 };
 
-const Table = ({ discount }) => {
+const Table = ({ discount, activePlayerId }) => {
   return (
-    <table className="main__main-table">
-      <thead className="main__main-table_table-head">
-        <tr className="main__main-table_table-row-head">
-          <th rowSpan={2}>Параметры и требования</th>
+    <table className="table">
+      <thead className="table__head">
+        <tr className="table__header-row">
+          <th rowSpan={2} className="table__cell">
+            Параметры и требования
+          </th>
           {mockData.map((participant, index) => (
-            <th key={participant.id}>Участник {index + 1}</th>
+            <th key={participant.id} className="table__cell">
+              Участник {index + 1}
+            </th>
           ))}
         </tr>
-        <tr className="main__main-table_table-row-head">
+        <tr className="table__header-row">
           {mockData.map((participant) => (
-            <th key={participant.id}>{participant.name}</th>
+            <th
+              key={participant.id}
+              className={`table__cell ${activePlayerId === participant.id ? "table__cell--highlight" : ""}`}
+            >
+              {participant.name}
+            </th>
           ))}
         </tr>
       </thead>
-      <hr></hr>
       <tbody>
         {/* Строки с данными */}
-        <tr className="main__main-table_table-row">
-          <td>Наличие комплекса мероприятий</td>
+        <tr className="table__row">
+          <td className="table__cell">Наличие комплекса мероприятий</td>
           {generateTableRows("complexActivities")}
         </tr>
-        <tr className="main__main-table_table-row">
-          <td>Срок изготовления (дни)</td>
+        <tr className="table__row">
+          <td className="table__cell">Срок изготовления (дни)</td>
           {generateTableRows("productionTimeDays")}
         </tr>
-        <tr className="main__main-table_table-row">
-          <td>Гарантийное обязательство (месяцы)</td>
+        <tr className="table__row">
+          <td className="table__cell">Гарантийное обязательство (месяцы)</td>
           {generateTableRows("warrantyMonths")}
         </tr>
-        <tr className="main__main-table_table-row">
-          <td>Условия оплаты (%)</td>
+        <tr className="table__row">
+          <td className="table__cell">Условия оплаты (%)</td>
           {generateTableRows("paymentTermsPercent")}
         </tr>
 
-        {/* Строки для стоимости изготовления, каждая в своей строке */}
-        <tr className="main__main-table_table-row">
-          <td rowSpan={3}>Стоимость изготовления</td>
+        {/* Стоимость изготовления */}
+        <tr className="table__row">
+          <td rowSpan={3} className="table__cell">
+            Стоимость изготовления
+          </td>
+          {mockData.map((participant, index) => (
+            <td
+              key={`${participant.id}-originalPrice-${index}`}
+              className="table__cell"
+            >
+              {participant.manufacturingCost}
+            </td>
+          ))}
+        </tr>
+
+        {/* Скидка */}
+        <tr className="table__row">
           {mockData.map((participant, index) => {
-            const originalPrice = participant.manufacturingCost;
-            return <td key={`${participant.id}-originalPrice-${index}`}>{originalPrice}</td>;
+            const discountPrice = discount[index] > 0 ? discount[index] : 0;
+            return (
+              <td
+                key={`${participant.id}-discountPrice-${index}`}
+                className="table__discount"
+              >
+                {discountPrice > 0 ? `- ${discountPrice}` : 0}
+              </td>
+            );
           })}
         </tr>
 
-        {/* Строки для скидки */}
-        <tr className="main__main-table_table-row">
-          {mockData.map((participant, index) => {
-            const discountPrice = discount > 0 ? discount : 0;
-            return <td className="main__main-table_table-data" key={`${participant.id}-discountPrice-${index}`}>{discountPrice > 0 ? `- ${discountPrice}` : 0}</td>;
-          })}
-        </tr>
-
-        {/* Строки для итоговой стоимости */}
-        <tr className="main__main-table_table-row">
+        {/* Итоговая стоимость */}
+        <tr className="table__row">
           {mockData.map((participant, index) => {
             const originalPrice = participant.manufacturingCost;
-            const discountPrice = discount > 0 ? discount : 0;
+            const discountPrice = discount[index] > 0 ? discount[index] : 0;
             const finalPrice = originalPrice - discountPrice;
-            return <td key={`${participant.id}-finalPrice-${index}`}>{finalPrice}</td>;
+            return (
+              <td
+                key={`${participant.id}-finalPrice-${index}`}
+                className="table__price"
+              >
+                {finalPrice}
+              </td>
+            );
           })}
         </tr>
       </tbody>
